@@ -279,6 +279,26 @@ class ListNode:
             prev=curr
             curr=next
         self.head=prev
+    def pairSwap(self):
+        prev=self.head
+        if prev is None:
+            return self.head
+        else:
+            if prev.next is None:
+                return self.head
+            else:
+                temp=prev.next
+                self.head=temp
+                next=temp.next
+                while (next):
+                    prev.next=next
+                    temp.next=prev
+                    temp=next
+                    
+                    
+                    
+        return self.head
+        
 def revL(A,prev,curr):
     if curr is None:
         A.head=prev
@@ -288,7 +308,11 @@ def revL(A,prev,curr):
     revL(A,curr,next)
 l1=ListNode()
 l2=ListNode()
-l2.append(1)
+l3=ListNode()
+for i in range(1,8,2):
+    l1.append(i)
+l1.display()
+l1.pairSwap()
 print("*****")
-revL(l2,None,l2.head)
-l2.display()
+l1.display()
+
