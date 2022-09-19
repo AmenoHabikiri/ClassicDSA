@@ -294,25 +294,69 @@ class ListNode:
                     prev.next=next
                     temp.next=prev
                     temp=next
-                    
-                    
-                    
         return self.head
-        
-def revL(A,prev,curr):
-    if curr is None:
-        A.head=prev
+def insertInSortedList(A,new,prev,temp):
+    if temp and temp.data<new.data:
+        return insertInSortedList(A,new,temp,temp.next)
+    elif temp is None and prev is None:
+        temp=new
+    elif temp is None:
+        prev.next=new
+    else:
+        if temp.data>new.data:
+            if prev:
+                new.next=prev.next
+                prev.next=new
+            else:
+                new.next=temp
+    return A  
+def displayList(A):
+    if A:
+        while A:
+            print(A.data)
+            A=A.next
+    else:
         return 
-    next=curr.next
-    curr.next=prev
-    revL(A,curr,next)
+def sortedMerge(left,right):
+    result=None
+    if left==None:
+        return right
+    elif right==None:
+        return left
+    elif left.data<=right.data:
+        result=left
+        result.next=sortedMerge(left.next,right)
+    else:
+        result=right
+        result.next=sortedMerge(left,right.next)
+    return result
+def MergeSort(head):
+    if head==None or head.next==None:
+        return head
+    middle=getMiddle(head)
+    nexttomiddle=middle.next
+    middle.next=None
+    left=MergeSort(head)
+    right=MergeSort(nexttomiddle)
+    sortedList=sortedMerge(left,right)
+    return sortedList
+def getMiddle(head):
+    p2=head
+    p1=None
+    if head is None or head.next is None:
+        return p1
+    p1=head
+    while p2.next and p2.next.next:
+        p2=p2.next.next
+        p1=p1.next
+    return p1  
 l1=ListNode()
-l2=ListNode()
-l3=ListNode()
-for i in range(1,8,2):
-    l1.append(i)
-l1.display()
-l1.pairSwap()
-print("*****")
+l1.append(3)
+l1.append(0)
+l1.append(4)
+l1.append(2)
+l1.append(6)
+l1.append(5)
+l1.head=MergeSort(l1.head)
 l1.display()
 

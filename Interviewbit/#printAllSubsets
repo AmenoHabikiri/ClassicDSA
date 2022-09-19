@@ -1,0 +1,27 @@
+def solve(input,output,li):
+    if len(input)==0:
+        li.append(output)
+        return
+    op1=output
+    op2=output+input[0]
+    input=input[1:]
+    solve(input,op1,li)
+    solve(input,op2,li)
+def solve1(input,li,output=[]):
+    if len(input)==0:
+        li.append((output))
+        return 
+    op1,op2=[],[]
+    op1=op1+output
+    op2=op2+output+[input[0]] 
+    solve1(input[1:],li,op1)
+    solve1(input[1:],li,op2) 
+li=[]
+A=[ 15, 20, 12, 19, 4 ]
+A.sort()
+solve1(A,li,[])
+li.pop(0)
+li.sort()   
+print(li)
+    
+        

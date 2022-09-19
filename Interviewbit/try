@@ -1,0 +1,18 @@
+def solve(A,new,prev,temp):
+    if temp and temp.data<new.data:
+        return solve(A,new,temp,temp.next)
+    elif temp is None and prev is None:
+        temp=new
+    elif temp is None:
+        prev.next=new
+    else:
+        if temp.data>new.data:
+            if prev:
+                new.next=prev.next
+                prev.next=new
+            else:
+                new.next=temp
+    return A
+        
+    
+    

@@ -1,0 +1,13 @@
+def solve(input,output,li):
+    if len(input)==0:
+        li.append(output)
+        return
+    solve(input[1:],output+" "+input[0],li)
+    solve(input[1:],output+input[0],li)
+input="abc"
+output=input[0]
+li=[]
+solve(input[1:],output,li)
+print(li)
+ 
+    
