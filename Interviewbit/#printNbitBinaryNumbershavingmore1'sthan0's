@@ -1,0 +1,12 @@
+def solve(output,one,zero,n,li):
+    if n==0:
+        li.append(output)
+        return 
+    if one>zero:
+        solve(output+"1",one+1,zero,n-1,li)
+        solve(output+"0",one,zero+1,n-1,li)
+    else:
+        solve(output+"1",one+1,zero,n-1,li)
+li=[]
+solve("",0,0,4,li)
+print(li)

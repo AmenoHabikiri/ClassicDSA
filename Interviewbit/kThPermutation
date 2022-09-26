@@ -1,0 +1,23 @@
+def solve(A,B):
+    fact=1
+    B=B-1
+    li=[]
+    n=A-1
+    for i in range(1,A):
+        fact=fact*i
+    for i in range(A-1):
+        li.append(B//fact)
+        B=B-((B//fact)*fact)
+        fact=fact//n
+        n=n-1
+    li2=[i for i in range(1,A+1)]
+    s="" 
+    while(li):
+        s=s+str(li2[li[0]])
+        li2.pop(li[0])
+        li.pop(0)
+    s=s+str(li2[0])
+    return s
+print(solve(5,4))
+    
+    

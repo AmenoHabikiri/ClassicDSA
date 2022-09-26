@@ -1,0 +1,18 @@
+def solve(input,k,maxm,ctr):
+    if k==0:
+        return
+    n=len(input)
+    mx=input[ctr]
+    for i in range(ctr+1,n):
+        if int(input[i])>int(mx):
+            mx=input[i]
+    if mx!=input[ctr]:
+        k=k-1
+    for i in range(ctr,n):
+        if input[i]==mx:
+            input[ctr],input[i]=input[i],input[ctr]
+            new_str="".join(input)
+            if int(new_str)>int(maxm[0]):
+                maxm[0]=new_str
+            solve(input,k,maxm,ctr+1)
+            input[ctr],input[i]=input[i],input[ctr]

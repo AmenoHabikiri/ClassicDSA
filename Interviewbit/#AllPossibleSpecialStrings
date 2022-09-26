@@ -1,0 +1,20 @@
+def solve(li,output):
+    if len(li)==0:
+        k=output.copy()
+        return k 
+    else:
+        klist=[]
+        for i in range(len(output)):
+            for j in range(len(li[0])):
+                klist.append(output[i]+li[0][j])
+        output=klist
+        return solve(li[1:],output)
+def solver(li):
+    result=[i for i in li[0]]
+    if len(li)>1:
+        result=solve(li[1:],result)
+    result.sort() 
+    return " ".join(result)
+li=['ab','cd']
+print(solver(li))
+    

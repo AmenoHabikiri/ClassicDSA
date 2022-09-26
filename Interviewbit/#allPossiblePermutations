@@ -1,0 +1,18 @@
+def solve(A,curr,li):
+    if curr==len(A)-1:
+        li.append(','.join(A.copy()))
+    else:
+        for i in range(curr,len(A)):
+            A[i],A[curr]=A[curr],A[i]
+            solve(A,curr+1,li)
+            A[curr],A[i]=A[i],A[curr]
+A=[0,0,1,2,0]
+li=[]
+for i in range(len(A)):
+    A[i]=str(A[i])
+solve(A,0,li)
+li=list(set(li))
+k=[]
+for i in range(len(li)):
+    k.append(list(map(int,li[i].split(","))))
+print(k)

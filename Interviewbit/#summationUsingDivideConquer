@@ -1,0 +1,45 @@
+#sumDivideConquer
+def Summation(A,start,end):
+    if start==end:
+        return A[start]
+    else:
+        mid=(start+end)//2
+        left=Summation(A,start,mid)
+        right=Summation(A,mid+1,end)
+        return left+right
+#minMaxDivideConquer
+def minMax(A,start,end):
+    if start==end:
+        return A[start],A[start]
+    elif start==end-1:
+        if A[start]<A[end]:
+            return A[start],A[end]
+        else:
+            return A[end],A[start]
+    else:
+        mid=(start+end)//2
+        min_left,max_left=minMax(A,start,mid)
+        min_right,max_right=minMax(A,mid+1,end)
+        return min(min_left,min_right),max(max_left,max_right)
+#finding2MaximalElements
+def Maximal2Elements(A,start,end):
+    if start==end:
+        return -1,A[start]
+    elif start==end-1:
+        if A[start]>A[end]:
+            return A[start],A[end]
+        else:
+            return A[end],A[start]
+    else:
+        mid=(start+end)//2
+        max_left,max2_left=Maximal2Elements(A,start,mid)
+        max_right,max2_right=Maximal2Elements(A,mid+1,end)
+        if max_left>max_right:
+            max1=max_left
+            max2=max(max2_left,max_right)
+        else:
+            max1=max_right
+            max2=max(max2_right,max_left)
+        return max1,max2
+A=[3,7,1,2,8,9,1,2]
+print(Maximal2Elements(A,0,len(A)-1))
